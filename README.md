@@ -8,7 +8,8 @@ open the HTML file in any modern browser like Chrome or Firefox and you will see
 
 ---
 
-**IMPORTANT NOTE**
+**IMPORTANT NOTE:**
+
 Make sure that the text file has the same data format like the one in the data folder in this repository
 
 ---
