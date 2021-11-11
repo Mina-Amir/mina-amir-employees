@@ -1,6 +1,6 @@
 # Objective
 
-This is a simple app that take from the user a text file that contains data about multiple employees working on multiple projects in a specific format and detect the most two employees that have worked together for each project and show a table. On each row of the table you find the first employee ID, the second employee ID, the project ID, and the days of the two employees spent working together.
+This is a simple app that take from the user a text file that contains data about multiple employees working on multiple projects in a specific format and detect the most two employees that have worked together for each project and show a table. On each row of the table you will find the first employee ID, the second employee ID, the project ID, and the days of the two employees spent working together.
 
 # How it works
 
