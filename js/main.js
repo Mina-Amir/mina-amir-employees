@@ -103,6 +103,44 @@ function getRepeatedProjects(array) {
 	return filterdEmployees;
 }
 
+// Helper function to create HTML tags and add text to them
+function createHTMLTags(tag, text = '') {
+	let HTMLTag = document.createElement(tag);
+	if (text !== '') {
+		HTMLTag.textContent = text;
+	}
+	return HTMLTag;
+}
+
+// Create HTML table of the final result
+function createTableForData(array) {
+	let table = createHTMLTags('table');
+	let tHead = createHTMLTags('thead');
+	let headerRow = createHTMLTags('tr');
+	let firstColumnTitle = createHTMLTags('th', 'Employee ID #1');
+	let secondColumnTitle = createHTMLTags('th', 'Employee ID #2');
+	let thirdColumnTitle = createHTMLTags('th', 'ProjectID');
+	let forthColumnTitle = createHTMLTags('th', 'Days worked');
+	headerRow.append(firstColumnTitle, secondColumnTitle, thirdColumnTitle, forthColumnTitle);
+	tHead.appendChild(headerRow);
+	let tBody = createHTMLTags('tbody');
+	for (let i = 0; i < array.length; i++) {
+		let mostWorkedTogether = array[i].reduce((prev, current) =>
+			prev.daysWorkedTogether > current.daysWorkedTogether ? prev : current
+		);
+		console.log('team mates that have worked together the most for each project', mostWorkedTogether);
+		let dataRow = createHTMLTags('tr');
+		let employeeOne = createHTMLTags('td', mostWorkedTogether.employee.empID);
+		let employeeTwo = createHTMLTags('td', mostWorkedTogether.otherEmployee.empID);
+		let ProjectID = createHTMLTags('td', mostWorkedTogether.employee.projectID);
+		let numberOfDays = createHTMLTags('td', mostWorkedTogether.daysWorkedTogether);
+		dataRow.append(employeeOne, employeeTwo, ProjectID, numberOfDays);
+		tBody.appendChild(dataRow);
+	}
+	table.append(tHead, tBody);
+	document.body.appendChild(table);
+}
+
 // Receive the text file from user input
 async function loadFile(e) {
 	let file = e.target.files[0];
@@ -111,6 +149,7 @@ async function loadFile(e) {
 		let rowsData = text.split('\r\n');
 		let data = getArrayOfObjectsData(rowsData);
 		let teamMates = getRepeatedProjects(data);
+		createTableForData(teamMates);
 	}
 }
 
